@@ -1,9 +1,12 @@
 //required imports
 const express = require("express");
+var cors = require('cors');
 
 //activate server
 const app = express();
+app.use(cors());
 const router = express.Router();
+
 
 
 //make api using routes
