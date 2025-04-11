@@ -6,19 +6,29 @@ const app = express();
 const router = express.Router();
 
 
-//start server - app.listen(portnumber,function)
-app.listen(3000,function(){
-    console.log('listening on port 3000');
-});
-
 //make api using routes
 //routes handle browser requests but look like URLs. Functions are used to dynamically handle routes
 
-//GET or regular request when user goes to http://localhost:3000/hello.
-app.get("/hello", function(req, res){
-    res.send("<h1>Hello Express!</h1>");
-});
-app.get("/goodbye", function(req, res){
-    res.send("<h1>Goodbye Express!</h1>");
+//creating song
+router.get("/songs", function(req,res) {
+    const songs = [{
+        title: "2005",
+        artist: "South Arcade",
+        popularity: 7,
+        genre: ["alt","pop/punk"]
+    },
+    {
+        title: "How 2 Get Away With Murder",
+        artist: "South Arcade",
+        popularity: 8,
+        genre: ["alt","pop/punk"]
+    }]
+        
+
+
+    res.json(songs);
 });
 
+//all request that use an api start with /api, url would be localhost:3000/api/songs
+app.use("/api", router);
+app.listen(3000);
